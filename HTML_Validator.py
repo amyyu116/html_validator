@@ -15,7 +15,10 @@ def validate_html(html):
     stack = []
     tags = _extract_tags(html)
     if tags == []:
-        return False
+        if '<' in html or '>' in html:
+            return False
+        else:
+            return True
     for i in range(len(tags)):
         if tags[i][1] != '/':
             stack.append(tags[i])
@@ -23,7 +26,10 @@ def validate_html(html):
             if len(stack) == 0:
                 return False
             if tags[i][1] == '/':
-                stack.pop()
+                if tags[i][2:-1] == stack[-1][1:-1]:
+                    stack.pop()
+                else:
+                    return False
     if len(stack) == 0:
         return True
     else:
