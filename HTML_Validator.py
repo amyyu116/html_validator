@@ -53,17 +53,17 @@ def _extract_tags(html):
     ['<strong>', '</strong>']
     '''
     output = []
-    htmlList = html.split('<')
+    htmllist = html.split('<')
     # print(html.split('>')
-    for i in range(len(htmlList)):
-        if htmlList[i] == '':
+    for i in range(len(htmllist)):
+        if htmllist[i] == '':
             continue
-        elif htmlList[i][-1] == '>':
-            output.append('<' + htmlList[i])
+        elif htmllist[i][-1] == '>':
+            output.append('<' + htmllist[i])
         else:
-            for j in range(len(htmlList[i])):
-                if htmlList[i][j] == '>':
-                    output.append('<'+htmlList[i][0:j + 1])
+            for j in range(len(htmllist[i])):
+                if htmllist[i][j] == '>':
+                    output.append('<' + htmllist[i][0:j + 1])
                 else:
                     continue
             continue
